@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.eu.testandrest.1000Fingers</string>
+		<string>group.eu.testandrest.TesterKey</string>
 	</array>
 </dict>
 </plist>

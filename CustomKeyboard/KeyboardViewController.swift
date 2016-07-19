@@ -17,6 +17,8 @@ class KeyboardViewController: UIInputViewController {
     var label :UILabel = UILabel()
     var defaultView = UIView()
     var csView = UIView()
+    var functionKeyValues = [String: String]()
+    var variablesFromHostApp = NSUserDefaults(suiteName: "group.eu.testandrest.TesterKey")
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -26,6 +28,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        variablesFromHostApp?.synchronize() //Probably not needed, but just in case
         
         defaultView = UIView(frame: CGRectMake(0, 0, keyBoardWidth, keyboardHeight))
         
@@ -33,15 +36,15 @@ class KeyboardViewController: UIInputViewController {
         row1.addSubview(addKeyboardLabel())
         
         let buttonTitlesRow2 = ["F1", "F2", "F3", "F4", "F5", "F6"]
-        let buttonsRow2 = createButtons(buttonTitlesRow2)
-        let row2 = UIView(frame: CGRectMake(0, rowHeight, keyBoardWidth, rowHeight))
-        
         let buttonTitlesRow3 = ["CS", "W", "Lorem", "XSS", "SQL", "ABC"]
-        let buttonsRow3 = createButtons(buttonTitlesRow3)
-        let row3 = UIView(frame: CGRectMake(0, rowHeight * 2, keyBoardWidth, rowHeight))
-        
         let buttonTitlesRow4 = ["Hide","KB", "Copy", "Clear", "<"]
+        
+        let buttonsRow2 = createButtons(buttonTitlesRow2)
+        let buttonsRow3 = createButtons(buttonTitlesRow3)
         let buttonsRow4 = createButtons(buttonTitlesRow4)
+        
+        let row2 = UIView(frame: CGRectMake(0, rowHeight, keyBoardWidth, rowHeight))
+        let row3 = UIView(frame: CGRectMake(0, rowHeight * 2, keyBoardWidth, rowHeight))
         let row4 = UIView(frame: CGRectMake(0, rowHeight * 3, keyBoardWidth, rowHeight))
         
         for button in buttonsRow2 {
@@ -67,6 +70,7 @@ class KeyboardViewController: UIInputViewController {
         addConstraints(buttonsRow3, containingView: row3)
         addConstraints(buttonsRow4, containingView: row4)
         
+        //This makes keyboard height lower, what we desire
         self.heightConstraint = NSLayoutConstraint(
             item:self.inputView!,
             attribute:.Height,
@@ -77,16 +81,12 @@ class KeyboardViewController: UIInputViewController {
             constant:keyboardHeight)
         addCSView()
         
-        var defaults = NSUserDefaults(suiteName: "group.eu.testandrest.1000Fingers")
-        defaults?.synchronize()
-        
-        if let restoredValue = defaults!.stringForKey("alarmTime"){
-            print(restoredValue)
-        }else{
-            print("JAma")
-        }
-        //self.view.frame.size.width
-        
+    }
+    
+    //This is currently needed to apply the heightConstraint
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.inputView!.addConstraint(self.heightConstraint)
     }
     
     func addCSView(){
@@ -140,24 +140,7 @@ class KeyboardViewController: UIInputViewController {
         return label
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.inputView!.addConstraint(self.heightConstraint)
-    }
-    
     func addConstraints(buttons: [UIButton], containingView: UIView){
-        
-        
-        //        if (self.view.frame.size.width == 0 || self.view.frame.size.height == 0) {
-        //            return
-        //        }
-        //        let screenSize = UIScreen.mainScreen().bounds.size
-        //        let screenH = screenSize.height;
-        //        let screenW = screenSize.width;
-        //        let isLandscape =  !(self.view.frame.size.width == screenW * ((screenW < screenH) ? 1 : 0) + screenH * ((screenW > screenH) ? 1 : 0))
-        //        NSLog(isLandscape ? "Screen: Landscape" : "Screen: Potrait")
-        
-        
         for (index, button) in buttons.enumerate() {
             
             let topConstraint = NSLayoutConstraint(item: button, attribute: .Top, relatedBy: .Equal, toItem: containingView, attribute: .Top, multiplier: 1.0, constant: 1)
@@ -194,7 +177,7 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    var currentTestKey = ""
+    var currentTestKey = "" //Var for storing, which special test key function has been pressed CS, W etc.
     
     func keyPressed(sender: AnyObject?) {
         let numbers = ["1","2","3","4","5","6","7","8","9","0"]
@@ -236,7 +219,7 @@ class KeyboardViewController: UIInputViewController {
         }
         else if(title == "<"){
             if(defaultView.hidden == true){
-                var oldLabelText = label.text
+                let oldLabelText = label.text
                 let newLabelText = String(oldLabelText!.characters.dropLast())
                 label.text = newLabelText
             }else{
@@ -274,6 +257,10 @@ class KeyboardViewController: UIInputViewController {
             csView.hidden = true
             currentTestKey = ""
             
+        }
+        else if(title == "F1"){
+            let restoredValue = variablesFromHostApp!.stringForKey("F1")
+            (textDocumentProxy as UIKeyInput).insertText(restoredValue!)
         }
         else{
             (textDocumentProxy as UIKeyInput).insertText(title!)
