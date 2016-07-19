@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        var defaults = NSUserDefaults(suiteName: "group.eu.testandrest.1000Fingers")
+        defaults?.setObject("It worked!", forKey: "alarmTime")
+        defaults?.synchronize()
     }
 
     override func didReceiveMemoryWarning() {
