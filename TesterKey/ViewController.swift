@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         textField.layer.borderColor = UIColor.blackColor().CGColor
         
         f1KeyEditField = UITextField(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
-        f1KeyEditField.placeholder = defaults!.objectForKey("F1") as! String
+        f1KeyEditField.placeholder = (defaults!.objectForKey("F1") as! String)
         f1KeyEditField.layer.borderWidth = 1
         f1KeyEditField.layer.borderColor = UIColor.blackColor().CGColor
         
