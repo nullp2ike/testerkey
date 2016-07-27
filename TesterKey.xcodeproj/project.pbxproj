@@ -15,6 +15,8 @@
 		BDA908221D3E9F9500D6C7A9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA908211D3E9F9500D6C7A9 /* KeyboardViewController.swift */; };
 		BDA908261D3E9F9500D6C7A9 /* CustomKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BDA9081F1D3E9F9500D6C7A9 /* CustomKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BDAC0D141D3EA05900A9B7DE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAC0D131D3EA05900A9B7DE /* Utils.swift */; };
+		BDCF85151D4921F600AA5BDE /* LoremSwiftum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCF85141D4921F600AA5BDE /* LoremSwiftum.swift */; };
+		BDCF85181D492D7000AA5BDE /* Contraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCF85171D492D7000AA5BDE /* Contraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		BDAC0D131D3EA05900A9B7DE /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		BDAC0D151D3EA24000A9B7DE /* CustomKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CustomKeyboard.entitlements; sourceTree = "<group>"; };
 		BDAC0D161D3EA28200A9B7DE /* TesterKey.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TesterKey.entitlements; sourceTree = "<group>"; };
+		BDCF85141D4921F600AA5BDE /* LoremSwiftum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoremSwiftum.swift; path = TesterKey/LoremSwiftum.swift; sourceTree = SOURCE_ROOT; };
+		BDCF85171D492D7000AA5BDE /* Contraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +114,12 @@
 		BDA908201D3E9F9500D6C7A9 /* CustomKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				BDCF85141D4921F600AA5BDE /* LoremSwiftum.swift */,
 				BDAC0D151D3EA24000A9B7DE /* CustomKeyboard.entitlements */,
 				BDA908211D3E9F9500D6C7A9 /* KeyboardViewController.swift */,
 				BDA908231D3E9F9500D6C7A9 /* Info.plist */,
 				BDAC0D131D3EA05900A9B7DE /* Utils.swift */,
+				BDCF85171D492D7000AA5BDE /* Contraints.swift */,
 			);
 			path = CustomKeyboard;
 			sourceTree = "<group>";
@@ -240,6 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDCF85181D492D7000AA5BDE /* Contraints.swift in Sources */,
+				BDCF85151D4921F600AA5BDE /* LoremSwiftum.swift in Sources */,
 				BDA908221D3E9F9500D6C7A9 /* KeyboardViewController.swift in Sources */,
 				BDAC0D141D3EA05900A9B7DE /* Utils.swift in Sources */,
 			);
@@ -397,6 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.testandrest.TesterKey.CustomKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -409,6 +418,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.testandrest.TesterKey.CustomKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
