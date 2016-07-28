@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD2987901D49F05B00F877BB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD29878F1D49F05B00F877BB /* TableViewController.swift */; };
 		BDA9080A1D3E9F6900D6C7A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA908091D3E9F6900D6C7A9 /* AppDelegate.swift */; };
 		BDA9080C1D3E9F6900D6C7A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA9080B1D3E9F6900D6C7A9 /* ViewController.swift */; };
 		BDA9080F1D3E9F6900D6C7A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA9080D1D3E9F6900D6C7A9 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BD29878F1D49F05B00F877BB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		BDA908061D3E9F6900D6C7A9 /* TesterKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesterKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA908091D3E9F6900D6C7A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDA9080B1D3E9F6900D6C7A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		BDA908081D3E9F6900D6C7A9 /* TesterKey */ = {
 			isa = PBXGroup;
 			children = (
+				BD29878F1D49F05B00F877BB /* TableViewController.swift */,
 				BDAC0D161D3EA28200A9B7DE /* TesterKey.entitlements */,
 				BDA908091D3E9F6900D6C7A9 /* AppDelegate.swift */,
 				BDA9080B1D3E9F6900D6C7A9 /* ViewController.swift */,
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDA9080C1D3E9F6900D6C7A9 /* ViewController.swift in Sources */,
+				BD2987901D49F05B00F877BB /* TableViewController.swift in Sources */,
 				BDA9080A1D3E9F6900D6C7A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

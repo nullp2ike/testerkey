@@ -29,13 +29,13 @@ class KeyboardViewController: UIInputViewController {
     var row3CS = UIView()
     var row4CS = UIView()
     
-    var buttonTitlesRow2 = ["F1", "F2", "F3", "F4", "F5", "F6", "URL"]
-    var buttonTitlesRow3 = ["CS", "W", "Lorem", "@", "Tweet", "Date", "XSS"]
-    var buttonTitlesRow4 = ["Hide","KB", "Copy", "Clear", "<<"]
+    var buttonTitlesRow2 = ["F1", "F2", "F3", "FN", "LN", "ABC", "URL"]
+    var buttonTitlesRow3 = ["CS", "W", "Lorem", "?", "@", "#", "Date", "XSS"]
+    var buttonTitlesRow4 = ["Hide","\u{1F310}", "\u{2423}","Copy", "Clear", "\u{232B}", "\u{23CE}"]
 
     let buttonTitlesRow2CS = ["1", "2", "3", "4", "5"]
     let buttonTitlesRow3CS = ["6","7", "8", "9", "0"]
-    let buttonTitlesRow4CS = ["Back", "Submit", "Clear", "<<"]
+    let buttonTitlesRow4CS = ["Back", "Clear", "\u{232B}","\u{23CE}"]
     
     
     override func updateViewConstraints() {
@@ -173,166 +173,11 @@ class KeyboardViewController: UIInputViewController {
         return button
     }
     
-    func addIndividualButtonConstraints(buttons: [UIButton], mainView: UIView){
-        for (index, button) in buttons.enumerate() {
-            
-            let topConstraint = NSLayoutConstraint(item: button,
-                                                   attribute: .Top,
-                                                   relatedBy: .Equal,
-                                                   toItem: mainView,
-                                                   attribute: .Top,
-                                                   multiplier: 1.0,
-                                                   constant: 1)
-            
-            let bottomConstraint = NSLayoutConstraint(item: button,
-                                                      attribute: .Bottom,
-                                                      relatedBy: .Equal,
-                                                      toItem: mainView,
-                                                      attribute: .Bottom,
-                                                      multiplier: 1.0,
-                                                      constant: -1)
-            
-            var rightConstraint : NSLayoutConstraint!
-            
-            if index == buttons.count - 1 {
-                
-                rightConstraint = NSLayoutConstraint(item: button,
-                                                     attribute: .Right,
-                                                     relatedBy: .Equal,
-                                                     toItem: mainView,
-                                                     attribute: .Right,
-                                                     multiplier: 1.0,
-                                                     constant: -1)
-                
-            }else{
-                
-                let nextButton = buttons[index+1]
-                rightConstraint = NSLayoutConstraint(item: button,
-                                                     attribute: .Right,
-                                                     relatedBy: .Equal,
-                                                     toItem: nextButton,
-                                                     attribute: .Left,
-                                                     multiplier: 1.0,
-                                                     constant: -1)
-            }
-            
-            
-            var leftConstraint : NSLayoutConstraint!
-            
-            if index == 0 {
-                
-                leftConstraint = NSLayoutConstraint(item: button,
-                                                    attribute: .Left,
-                                                    relatedBy: .Equal,
-                                                    toItem: mainView,
-                                                    attribute: .Left,
-                                                    multiplier: 1.0,
-                                                    constant: 1)
-                
-            }else{
-                
-                let prevtButton = buttons[index-1]
-                leftConstraint = NSLayoutConstraint(item: button,
-                                                    attribute: .Left,
-                                                    relatedBy: .Equal,
-                                                    toItem: prevtButton,
-                                                    attribute: .Right,
-                                                    multiplier: 1.0,
-                                                    constant: 1)
-                
-                let firstButton = buttons[0]
-                let widthConstraint = NSLayoutConstraint(item: firstButton,
-                                                         attribute: .Width,
-                                                         relatedBy: .Equal,
-                                                         toItem: button,
-                                                         attribute: .Width,
-                                                         multiplier: 1.0,
-                                                         constant: 0)
-                
-                widthConstraint.priority = 995
-                mainView.addConstraint(widthConstraint)
-            }
-            NSLayoutConstraint.activateConstraints([topConstraint, bottomConstraint, rightConstraint, leftConstraint])
-        }
-    }
-
-    func addConstraintsToInputView(inputView: UIView, rowViews: [UIView]){
-        for (index, rowView) in rowViews.enumerate() {
-            let rightSideConstraint = NSLayoutConstraint(item: rowView,
-                                                         attribute: .Right,
-                                                         relatedBy: .Equal,
-                                                         toItem: inputView,
-                                                         attribute: .Right,
-                                                         multiplier: 1.0,
-                                                         constant: -1)
-            let leftConstraint = NSLayoutConstraint(item: rowView,
-                                                    attribute: .Left,
-                                                    relatedBy: .Equal,
-                                                    toItem: inputView,
-                                                    attribute: .Left, multiplier: 1.0, constant: 1)
-            NSLayoutConstraint.activateConstraints([leftConstraint, rightSideConstraint])
-            var topConstraint: NSLayoutConstraint
-            if index == 0 {
-                topConstraint = NSLayoutConstraint(item: rowView,
-                                                   attribute: .Top,
-                                                   relatedBy: .Equal,
-                                                   toItem: inputView,
-                                                   attribute: .Top,
-                                                   multiplier: 1.0,
-                                                   constant: 0)
-                
-            }else{
-                
-                let prevRow = rowViews[index-1]
-                topConstraint = NSLayoutConstraint(item: rowView,
-                                                   attribute: .Top,
-                                                   relatedBy: .Equal,
-                                                   toItem: prevRow,
-                                                   attribute: .Bottom,
-                                                   multiplier: 1.0,
-                                                   constant: 0)
-                let firstRow = rowViews[0]
-                let heightConstraint = NSLayoutConstraint(item: firstRow,
-                                                          attribute: .Height,
-                                                          relatedBy: .Equal,
-                                                          toItem: rowView,
-                                                          attribute: .Height,
-                                                          multiplier: 1.0,
-                                                          constant: 0)
-                heightConstraint.priority = 995
-                NSLayoutConstraint.activateConstraints([heightConstraint])
-            }
-            NSLayoutConstraint.activateConstraints([topConstraint])
-            var bottomConstraint: NSLayoutConstraint
-            if index == rowViews.count - 1 {
-                bottomConstraint = NSLayoutConstraint(item: rowView,
-                                                      attribute: .Bottom,
-                                                      relatedBy: .Equal,
-                                                      toItem: inputView,
-                                                      attribute: .Bottom,
-                                                      multiplier: 1.0,
-                                                      constant: 0)
-                NSLayoutConstraint.activateConstraints([bottomConstraint])
-            }else{
-                let nextRow = rowViews[index+1]
-                bottomConstraint = NSLayoutConstraint(item: rowView,
-                                                      attribute: .Bottom,
-                                                      relatedBy: .Equal,
-                                                      toItem: nextRow,
-                                                      attribute: .Top,
-                                                      multiplier: 1.0,
-                                                      constant: 0)
-                NSLayoutConstraint.activateConstraints([bottomConstraint])
-            }
-        }
-    }
-    
-    
     func keyPressed(sender: AnyObject?) {
         let numbers = ["1","2","3","4","5","6","7","8","9","0"]
         let button = sender as! UIButton
         let title = button.titleForState(.Normal)
-        if(title == "KB"){
+        if(title == "\u{1F310}"){ //Change keyboard
             advanceToNextInputMode()
         }
         else if(title == "CS"){
@@ -345,6 +190,11 @@ class KeyboardViewController: UIInputViewController {
             label.text = ""
             hideDefaultView()
         }
+        else if(title == "?"){
+            currentTestKey = "?"
+            label.text = ""
+            hideDefaultView()
+        }
         else if(title == "Back"){
             showDefaultView()
         }
@@ -352,10 +202,20 @@ class KeyboardViewController: UIInputViewController {
             label.text = label.text! + title!
             
         }
+        else if(title == "FN"){
+            (textDocumentProxy as UIKeyInput).insertText(Lorem.firstName)
+        }
+        else if(title == "LN"){
+            (textDocumentProxy as UIKeyInput).insertText(Lorem.lastName)
+        }
         else if (title == "@"){
             (textDocumentProxy as UIKeyInput).insertText(Lorem.email)
         }
-        else if (title == "Tweet"){
+        else if (title == "ABC"){
+            let string = "The quick brown fox jumps over the lazy dog"
+            (textDocumentProxy as UIKeyInput).insertText(string)
+        }
+        else if (title == "#"){
             (textDocumentProxy as UIKeyInput).insertText(Lorem.tweet)
         }
         else if (title == "Date"){
@@ -381,7 +241,7 @@ class KeyboardViewController: UIInputViewController {
             hideDefaultView()
             
         }
-        else if(title == "<<"){
+        else if(title == "\u{232B}"){ //Backspace
             if(defaultViewHidden == true){
                 let oldLabelText = label.text
                 let newLabelText = String(oldLabelText!.characters.dropLast())
@@ -407,7 +267,7 @@ class KeyboardViewController: UIInputViewController {
         else if(title == "Hide"){
             dismissKeyboard()
         }
-        else if(title == "Submit"){
+        else if(title == "\u{23CE}"){ //Enter key
             var textToInsert = ""
             if(currentTestKey == "CS" && Int(label.text!) > 0){
                 let utils = Utils()
@@ -416,12 +276,20 @@ class KeyboardViewController: UIInputViewController {
                 textToInsert = String(count: Int(label.text!)!, repeatedValue: ("W" as Character))
             }else if(currentTestKey == "Lorem" && Int(label.text!) > 0){
                 textToInsert = Lorem.sentences(Int(label.text!)!)
+            }else if(currentTestKey == ""){
+                textToInsert = "\n"
+            }else if(currentTestKey == "?"){
+                let intSize = UInt32(label.text!)
+                textToInsert = String(Int(arc4random_uniform(intSize!)))
             }
             
             (textDocumentProxy as UIKeyInput).insertText(textToInsert)
             showDefaultView()
             currentTestKey = ""
 
+        }
+        else if(title == "\u{2423}"){ //Spacebar
+             (textDocumentProxy as UIKeyInput).insertText(" ")
         }
         else if(title == "F1"){
             let restoredValue = variablesFromHostApp!.stringForKey("F1")

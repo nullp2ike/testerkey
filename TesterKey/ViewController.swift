@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     var f1KeyEditField = UITextField()
     var defaults = NSUserDefaults(suiteName: "group.eu.testandrest.TesterKey")
 
+    func transition() {
+        let secondViewController:TableViewController = TableViewController()
+        
+        self.presentViewController(secondViewController, animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,10 +30,17 @@ class ViewController: UIViewController {
         
         defaults?.synchronize()
         
-        let settingsButton = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 50))
-        settingsButton.backgroundColor = .greenColor()
-        settingsButton.setTitle("Keyboard Settings", forState: .Normal)
-        settingsButton.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
+        
+        let tableViewButton = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 25))
+        tableViewButton.backgroundColor = .greenColor()
+        tableViewButton.setTitle("TableView", forState: .Normal)
+        tableViewButton.addTarget(self, action: #selector(transition), forControlEvents: .TouchUpInside)
+        
+        
+//        let settingsButton = UIButton(frame: CGRect(x: 100, y: 100, width: 200, height: 50))
+//        settingsButton.backgroundColor = .greenColor()
+//        settingsButton.setTitle("Keyboard Settings", forState: .Normal)
+//        settingsButton.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
         
         let textField = UITextField(frame: CGRect(x: 100, y: 200, width: 200, height: 50))
         textField.layer.borderWidth = 1
@@ -42,7 +56,8 @@ class ViewController: UIViewController {
         f1SaveButton.setTitle("Save to F1", forState: .Normal)
         f1SaveButton.addTarget(self, action: #selector(saveF1), forControlEvents: .TouchUpInside)
         
-        self.view.addSubview(settingsButton)
+        self.view.addSubview(tableViewButton)
+        //self.view.addSubview(settingsButton)
         self.view.addSubview(textField)
         self.view.addSubview(f1KeyEditField)
         self.view.addSubview(f1SaveButton)
